@@ -14,6 +14,7 @@ class TodoApp extends Component{
                         <Route path ="/login" component = {LoginComponent} />
                         <Route path ="/welcome/:name" component ={WelcomeComponent} />
                         <Route path = "/todos" component={TodoList} />
+                        <Route path ="/logout" component= {LogoutComponent} />
                         <Route component={ErrorComponent} />
                     </Switch>
                     <FooterComponent />
@@ -109,6 +110,19 @@ function CheckCredentials(props){
     else return null
 }
 
+class LogoutComponent extends Component {
+    render(){
+        return(
+            <>
+                You are logged out.
+                <div className="container">
+                    Thank you for using the application.
+                </div>
+            </>
+        )
+    }
+}
+
 class WelcomeComponent extends Component{
     render(){
         return(
@@ -143,7 +157,9 @@ class HeaderComponent extends Component{
 class FooterComponent extends Component{
     render(){
         return(
-           <div><hr /> Footer</div> 
+           <footer className="footer">
+               <span className="text-muted">Jai Hind!!</span>
+           </footer> 
         )
     }
 }
