@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import { identifier } from '@babel/types';
 
 class TodoApp extends Component{
@@ -112,6 +112,7 @@ class WelcomeComponent extends Component{
         return(
             <div>
                 Welcome {this.props.match.params.name} !!
+                You can manage your todos <Link to="/todos">here</Link>
             </div>
         )
     }
@@ -130,9 +131,9 @@ class TodoList extends Component{
         super(props)
         this.state ={
             todo :  [
-                {id : 1, description : "Learn React"},
-                {id : 2, description : "Get a job"},
-                {id : 3, description : "Buy Range Rover"}
+                {id : 1, description : "Learn React" , status: true, targetDate : new Date()},
+                {id : 2, description : "Get a job", status: false, targetDate : new Date()},
+                {id : 3, description : "Buy Range Rover", status: false, targetDate : new Date()}
             ] 
                 
         }
@@ -147,6 +148,8 @@ class TodoList extends Component{
                         <tr>
                             <th>Id</th>
                             <th>Description</th>
+                            <th>Status</th>
+                            <th>Target Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,6 +159,8 @@ class TodoList extends Component{
                                 <tr>
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
+                                    <td>{todo.status.toString()}</td>
+                                    <td>{todo.targetDate.toString()}</td>
                                 </tr>
                             )
                         }
