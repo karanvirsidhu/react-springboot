@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import { identifier } from '@babel/types';
+import AuthenticationService from './AuthenticationService.js'
 
 class TodoApp extends Component{
     render(){
@@ -71,6 +72,7 @@ class LoginComponent extends Component{
 
     handleLogin(){
         if(this.state.username === 'Marshal' && this.state.password === 'qwerty'){
+            AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`)     //redirecting to welcome page.
             
             this.setState ({
