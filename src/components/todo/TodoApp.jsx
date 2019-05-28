@@ -63,6 +63,8 @@ class LoginComponent extends Component{
 
     handleLogin(){
         if(this.state.username === 'Marshal' && this.state.password === 'qwerty'){
+            this.props.history.push("/welcome")
+            
             this.setState ({
                  hasLoginPassed : true,
                  hasLoginFailed: false
