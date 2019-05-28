@@ -10,7 +10,7 @@ class TodoApp extends Component{
                     <Switch>
                         <Route path ="/" exact component = {LoginComponent} />
                         <Route path ="/login" component = {LoginComponent} />
-                        <Route path ="/welcome" component ={WelcomeComponent} />
+                        <Route path ="/welcome/:name" component ={WelcomeComponent} />
                         <Route component={ErrorComponent} />
                     </Switch>
                     </>
@@ -66,7 +66,7 @@ class LoginComponent extends Component{
 
     handleLogin(){
         if(this.state.username === 'Marshal' && this.state.password === 'qwerty'){
-            this.props.history.push("/welcome")     //redirecting to welcome page.
+            this.props.history.push(`/welcome/${this.state.username}`)     //redirecting to welcome page.
             
             this.setState ({
                  hasLoginPassed : true,
@@ -109,7 +109,7 @@ class WelcomeComponent extends Component{
     render(){
         return(
             <div>
-                Welcome Marshal !!
+                Welcome {this.props.match.params.name} !!
             </div>
         )
     }
