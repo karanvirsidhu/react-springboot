@@ -90,11 +90,13 @@ class LoginComponent extends Component{
     
     render(){
         return(
-            <div>
+            
+            <div className="container">
+                <h3>Login</h3>
                 <CheckCredentials hasLoginPassed = {this.state.hasLoginPassed} hasLoginFailed = {this.state.hasLoginFailed} />
                 User Name : <input type="text" name="username" value={this.state.username} onChange = {this.handleChange} />
                 Password  : <input type="password" name="password" value={this.state.password} onChange = {this.handleChange}/>
-                <button onClick= {this.handleLogin}>Login</button>
+                <button className="btn btn-success" onClick= {this.handleLogin}>Login</button>
             </div>
         )
     }
@@ -105,7 +107,7 @@ function CheckCredentials(props){
         return <div>Login Successful</div>
     }
     else if(props.hasLoginFailed == true){
-        return <div>Invalid Credentials</div>
+        return <div className="alert alert-warning">Invalid Credentials</div>
     }
     else return null
 }
@@ -126,10 +128,14 @@ class LogoutComponent extends Component {
 class WelcomeComponent extends Component{
     render(){
         return(
-            <div>
+            <>
+               <h3>Welcome</h3> 
+               <div className="containers">
                 Welcome {this.props.match.params.name} !!
                 You can manage your todos <Link to="/todos">here</Link>
             </div>
+            </>
+            
         )
     }
 }
@@ -189,7 +195,7 @@ class TodoList extends Component{
         return(
             <div>
                 <h1>To Do List</h1>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Id</th>
