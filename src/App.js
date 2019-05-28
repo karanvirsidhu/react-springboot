@@ -4,6 +4,7 @@ import Counter from './components/counter/Counter'
 import logo from './logo.svg';
 import TodoApp from './components/todo/TodoApp'
 import './App.css';
+import './bootstrap.css';
 
 
 class App extends Component {

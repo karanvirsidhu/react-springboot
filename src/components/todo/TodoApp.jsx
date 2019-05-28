@@ -8,6 +8,7 @@ class TodoApp extends Component{
             <div className="TodoApp">
                 <Router>
                     <>
+                    <HeaderComponent/>
                     <Switch>
                         <Route path ="/" exact component = {LoginComponent} />
                         <Route path ="/login" component = {LoginComponent} />
@@ -15,6 +16,7 @@ class TodoApp extends Component{
                         <Route path = "/todos" component={TodoList} />
                         <Route component={ErrorComponent} />
                     </Switch>
+                    <FooterComponent />
                     </>
                 </Router>
             </div>
@@ -114,6 +116,22 @@ class WelcomeComponent extends Component{
                 Welcome {this.props.match.params.name} !!
                 You can manage your todos <Link to="/todos">here</Link>
             </div>
+        )
+    }
+}
+
+class HeaderComponent extends Component{
+    render(){
+        return(
+           <div>Header <hr /></div> 
+        )
+    }
+}
+
+class FooterComponent extends Component{
+    render(){
+        return(
+           <div><hr /> Footer</div> 
         )
     }
 }
