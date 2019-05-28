@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class TodoApp extends Component{
     render(){
@@ -7,9 +7,12 @@ class TodoApp extends Component{
             <div className="TodoApp">
                 <Router>
                     <>
-                    <Route path ="/" exact component = {LoginComponent} />
-                    <Route path ="/login" component = {LoginComponent} />
-                    <Route path ="/welcome" component ={WelcomeComponent} />
+                    <Switch>
+                        <Route path ="/" exact component = {LoginComponent} />
+                        <Route path ="/login" component = {LoginComponent} />
+                        <Route path ="/welcome" component ={WelcomeComponent} />
+                        <Route component={ErrorComponent} />
+                    </Switch>
                     </>
                 </Router>
             </div>
@@ -63,7 +66,7 @@ class LoginComponent extends Component{
 
     handleLogin(){
         if(this.state.username === 'Marshal' && this.state.password === 'qwerty'){
-            this.props.history.push("/welcome")
+            this.props.history.push("/welcome")     //redirecting to welcome page.
             
             this.setState ({
                  hasLoginPassed : true,
@@ -110,6 +113,14 @@ class WelcomeComponent extends Component{
             </div>
         )
     }
+}
+
+function ErrorComponent (){
+    return(
+        <div>
+            Error occured!! Please check the url.
+        </div>
+    )
 }
 
 
