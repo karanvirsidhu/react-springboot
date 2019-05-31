@@ -4,7 +4,9 @@ import { identifier } from '@babel/types';
 import AuthenticationService from './AuthenticationService.js'
 import AuthenticatedRoute from './AuthenticatedRoute.jsx'
 import LoginComponent from './LoginComponent.jsx'
+import HeaderComponent from './HeaderComponent.jsx'
 import ToDoList from './ToDoList.jsx'
+import HelloWorldService from '../../api/todo/HelloWorldService.js'
 
 class TodoApp extends Component{
     render(){
@@ -49,10 +51,20 @@ class LogoutComponent extends Component {
 class WelcomeComponent extends Component{
     constructor(props){
         super(props)
+        this.state ={
+            welcomeMsg : ''
+        }
         this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this)
+        this.handleSuccessfulResponse = this.handleSuccessfulResponse.bind(this)
     }
     retrieveWelcomeMessage(){
-        console.log('retrieve')
+       // console.log('retrieve')
+       HelloWorldService.executeHelloWorldService()
+       .then(response => this.handleSuccessfulResponse(response))
+    }
+
+    handleSuccessfulResponse(response){
+            this.setState([{welcomeMsg: response.data}])
     }
     
     render(){
@@ -67,33 +79,17 @@ class WelcomeComponent extends Component{
                 <div className="container">
                 Customize your welcome message <button className="btn btn-success" onClick={this.retrieveWelcomeMessage}>here</button>
                  </div>
+
+                 <div className="container">
+                        {this.state.welcomeMsg}
+                 </div>
             </>
             
         )
     }
 }
 
-class HeaderComponent extends Component{
-    render(){
-        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-        console.log(isUserLoggedIn)
-        return(
-           <header>
-               <nav className="navbar navbar-expand-md navbar-dark bg-dark" >
-                   <div><a className="navbar-brand" href="https://www.linkedin.com/in/karanvir-singh-sidhu/">Karanvir</a></div>
-                   <ul className="navbar-nav">
-                       {isUserLoggedIn && <li ><Link className="nav-link" to="/welcome/Marshal">Home</Link></li>}
-                       {isUserLoggedIn && <li ><Link className="nav-link" to="/todos">Todos</Link></li>}
-                   </ul>
-                   <ul className="navbar-nav navbar-collapse justify-content-end">
-                       {!isUserLoggedIn && <li ><Link className="nav-link" to="/login">Login</Link></li>}
-                       {isUserLoggedIn && <li ><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
-                   </ul>
-               </nav>
-           </header>
-        )
-    }
-}
+
 
 class FooterComponent extends Component{
     render(){

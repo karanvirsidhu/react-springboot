@@ -48,7 +48,7 @@ class LoginComponent extends Component{
     }
 
     handleLogin(){
-        if(this.state.username === 'Marshal1' && this.state.password === 'qwerty'){
+        if(this.state.username === 'Marshal' && this.state.password === 'qwerty'){
             AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`)     //redirecting to welcome page.
             
