@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import AuthenticationService from './AuthenticationService.js';
-import {Route, Redirect} from 'react-router-dom';
+
 
 
 class LoginComponent extends Component{
@@ -82,10 +82,10 @@ class LoginComponent extends Component{
 }
 
 function CheckCredentials(props){
-    if(props.hasLoginPassed == true){
+    if(props.hasLoginPassed === true){
         return <div>Login Successful</div>
     }
-    else if(props.hasLoginFailed == true){
+    else if(props.hasLoginFailed === true){
         return <div className="alert alert-warning">Invalid Credentials</div>
     }
     else return null

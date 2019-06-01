@@ -11,11 +11,3 @@ export default class FirstComponent extends Component {
     } 
   }
 
-  // Component name should start with upper case
-export function SecondComponent() {
-    return (
-      <div className="secondComponent">
-      Second Component
-    </div>
-    );
-  }

@@ -5,12 +5,11 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom'
 
 import AuthenticationService from './AuthenticationService.js';
-import {Route, Redirect} from 'react-router-dom';
 
 class HeaderComponent extends Component{
     render(){
         const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-        console.log(isUserLoggedIn)
+     //   console.log(isUserLoggedIn)
         return(
            <header>
                <nav className="navbar navbar-expand-md navbar-dark bg-dark" >
