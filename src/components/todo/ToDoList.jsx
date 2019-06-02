@@ -15,6 +15,8 @@ class ToDoList extends Component{
                 
         }
         this.deleteTodo =this.deleteTodo.bind(this);
+        this.updateTodo =this.updateTodo.bind(this);
+        this.refreshTodos =this.refreshTodos.bind(this);
     }
 
     componentDidMount(){
@@ -43,6 +45,17 @@ class ToDoList extends Component{
         }) 
     }
 
+    updateTodo(id){
+        let username = AuthenticationService.LoggedInUsername()
+        console.log(id + " "+ username)
+        this.props.history.push(`/todos/${id}`)
+        // TodoDataService.deleteTodo(username,id)
+        // .then(response => {
+        //    // console.log(response)
+        //    this.setState ({ message: `Delete of todo ${id} is successful.`})
+        //    this.refreshTodos()
+        // }) 
+    }
 
 
 
@@ -54,10 +67,13 @@ class ToDoList extends Component{
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            
                             <th>Description</th>
                             <th>Status</th>
-                            <th>Target Date</th>                            
+                            <th>Target Date</th>  
+                            <th>Update</th>  
+                            <th>Delete</th>
+                                                   
                         </tr>
                     </thead>
                     <tbody>
@@ -65,10 +81,11 @@ class ToDoList extends Component{
                             this.state.todo.map(
                                 todo =>  
                                 <tr>
-                                    <td>{todo.id}</td>
+                                    
                                     <td>{todo.description}</td>
                                     <td>{todo.done.toString()}</td>   
-                                    <td>{todo.targetDtae.toString()}</td>      
+                                    <td>{todo.targetDtae.toString()}</td>    
+                                    <td><button className="btn btn-success" onClick={() => this.updateTodo(todo.id)}>Update</button></td>                                                         
                                     <td><button className="btn btn-warning" onClick={() => this.deleteTodo(todo.id)}>Delete</button></td>                                                              
                                 </tr>
                             )
